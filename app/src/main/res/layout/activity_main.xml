@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/backgroundImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/background_description"
+        android:scaleType="fitXY"
+        android:scrollbars="vertical"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/zodiac" />
+
+    <TextView
+        android:id="@+id/promptTextView"
+        android:layout_width="296dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
+        android:text="@string/prompt_text"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/backgroundImageView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/backgroundImageView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="291dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="35dp"
+        android:background="@android:color/holo_blue_light"
+        android:gravity="end"
+        app:layout_constraintEnd_toStartOf="@+id/backgroundImageView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/backgroundImageView"
+        app:layout_constraintTop_toBottomOf="@+id/promptTextView" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="179dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="177dp"
+        android:background="#FF9800"
+        android:onClick=""
+        android:text="@string/submit_button"
+        app:layout_constraintEnd_toStartOf="@+id/backgroundImageView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/backgroundImageView"
+        app:layout_constraintTop_toTopOf="@+id/backgroundImageView"
+        tools:ignore="OnClick" />
+
+    <TextView
+        android:id="@+id/resultView"
+        android:layout_width="309dp"
+        android:layout_height="417dp"
+        android:layout_marginTop="260dp"
+        android:layout_marginEnd="39dp"
+        android:layout_marginRight="39dp"
+        android:foregroundGravity="fill_horizontal"
+        android:justificationMode="inter_word"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/backgroundImageView"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/backgroundImageView"
+        app:layout_constraintTop_toTopOf="@+id/backgroundImageView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

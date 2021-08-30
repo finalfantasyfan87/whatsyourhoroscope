@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">What\'s Your Horoscope?</string>
+    <string name="prompt_text">Select your Sun sign</string>
+    <string name="submit_button">Predict???</string>
+    <string name="background_description">Just an image</string>
+    <string-array name="sunsigns">
+        <item>Aries</item>
+        <item>Taurus</item>
+        <item>Gemini</item>
+        <item>Cancer</item>
+        <item>Leo</item>
+        <item>Virgo</item>
+        <item>Libra</item>
+        <item>Scorpio</item>
+        <item>Sagittarius</item>
+        <item>Capricorn</item>
+        <item>Aquarius</item>
+        <item>Pisces</item>
+    </string-array>
+</resources>
