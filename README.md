@@ -1,5 +1,5 @@
 # whatsyourhoroscope
 
-![Screen Shot 2021-08-30 at 11 44 47 PM](https://user-images.githubusercontent.com/26098530/131443412-7b62fb2c-405d-4339-8ca5-7cb26b7a26fc.png)
+<img width="502" alt="Screen Shot 2021-08-31 at 12 35 02 AM" src="https://user-images.githubusercontent.com/26098530/131447770-469ae5de-7884-4a56-981f-f8faf6e2d890.png">
 
 
