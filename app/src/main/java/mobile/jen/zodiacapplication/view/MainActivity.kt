@@ -1,18 +1,17 @@
-package mobile.jen.zodiacapplication
+package mobile.jen.zodiacapplication.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
-import org.springframework.http.*
-import org.springframework.web.client.RestTemplate
+import mobile.jen.zodiacapplication.R
+import mobile.jen.zodiacapplication.service.ZodiacService
+import org.springframework.http.ResponseEntity
 
 
 class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
@@ -57,63 +56,28 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     }
 
     public suspend fun getPredictions(view: android.view.View) {
+        val zodiacService = ZodiacService();
         try {
             val result = withContext(Dispatchers.Default) {
-                callAztroAPI("https://sameer-kumar-aztro-v1.p.rapidapi.com/", sunSign, "today")
+                zodiacService.callAztroAPI(
+                    "https://sameer-kumar-aztro-v1.p.rapidapi.com/",
+                    sunSign,
+                    "today"
+                )
             }
-            parseData(result as ResponseEntity<Any>)
+            val response = zodiacService.parseData(result as ResponseEntity<Any>, this.sunSign)
+            setText(this.resultView, response)
 
         } catch (e: Exception) {
             e.printStackTrace()
+            this.resultView!!.text = "An error has occurred. Please try again."
         }
     }
 
-
-    private fun callAztroAPI(apiUrl: String, sign: String, date: String): Any {
-        val restTemplate = RestTemplate()
-        val headers = HttpHeaders()
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.set("x-rapidapi-host", "sameer-kumar-aztro-v1.p.rapidapi.com")
-        headers.set("x-rapidapi-key", "8b9d003124msh378df7fcd812012p1617a9jsn6ac2783301cb")
-
-
-        val request: HttpEntity<*> = HttpEntity<Any?>(headers)
-
-
-        val response: Any =
-            restTemplate.exchange(
-                "$apiUrl?sign=$sign&day=$date",
-                HttpMethod.POST,
-                request,
-                String::class.java
-            )
-
-
-        return response
-    }
-
-
-    private fun parseData(result: ResponseEntity<Any>) {
-        try {
-            val predictionData = Gson().fromJson(result.body.toString(), Prediction::class.java)
-            Log.d("parseData", predictionData.description)
-
-
-
-            var prediction = "Today's prediction for " + this.sunSign + " is" + "\n"
-
-
-            prediction += predictionData.description
-
-            setText(this.resultView, prediction)
-
-        } catch (e: Exception) {
-            e.printStackTrace()
-            this.resultView!!.text = "Oops!! something went wrong, please try again"
-        }
-    }
 
     private fun setText(text: TextView?, value: String) {
         runOnUiThread { text!!.text = value }
     }
 }
+
+

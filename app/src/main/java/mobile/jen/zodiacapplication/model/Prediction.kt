@@ -1,4 +1,4 @@
-package mobile.jen.zodiacapplication
+package mobile.jen.zodiacapplication.model
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
