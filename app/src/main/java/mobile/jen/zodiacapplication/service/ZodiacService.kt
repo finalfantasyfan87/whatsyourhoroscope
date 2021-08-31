@@ -1,6 +1,5 @@
 package mobile.jen.zodiacapplication.service
 
-import android.widget.TextView
 import com.google.gson.Gson
 import mobile.jen.zodiacapplication.model.Prediction
 import org.springframework.http.*
@@ -26,7 +25,8 @@ class ZodiacService {
 
      fun parseData(result: ResponseEntity<Any>, sunSign:String): String {
          val predictionData = Gson().fromJson(result.body.toString(), Prediction::class.java)
-         var prediction = predictionData.current_date +" prediction for "+sunSign+"("+predictionData.date_range + ")" +"\n" +"\n"
+         var prediction =
+             "${predictionData.current_date} prediction for $sunSign(${predictionData.date_range})\n\n"
          prediction += predictionData.description
          return prediction
      }
