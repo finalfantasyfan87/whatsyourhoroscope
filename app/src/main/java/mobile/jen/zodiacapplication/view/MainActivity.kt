@@ -11,7 +11,6 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
 import mobile.jen.zodiacapplication.R
 import mobile.jen.zodiacapplication.service.ZodiacService
-import org.springframework.http.ResponseEntity
 
 
 class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
@@ -58,14 +57,14 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     public suspend fun getPredictions(view: android.view.View) {
         val zodiacService = ZodiacService();
         try {
-            val result = withContext(Dispatchers.Default) {
+            val json = withContext(Dispatchers.Default) {
                 zodiacService.callAztroAPI(
                     "https://sameer-kumar-aztro-v1.p.rapidapi.com/",
                     sunSign,
                     "today"
                 )
             }
-            val response = zodiacService.parseData(result as ResponseEntity<Any>, this.sunSign)
+            val response = zodiacService.parseData(json, this.sunSign)
             setText(this.resultView, response)
 
         } catch (e: Exception) {
